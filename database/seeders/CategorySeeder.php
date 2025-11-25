@@ -2,25 +2,21 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class CategorySeeder extends Seeder
 {
-    /**
-     * Jalankan seeder database.
-     */
     public function run(): void
     {
-        $categories = ['Elektronik', 'Pakaian Pria', 'Peralatan Rumah Tangga', 'Makanan & Minuman', 'Otomotif'];
+        $categories = ['Skin Care', 'Makeup', 'Hair Care', 'Fragrances', 'Body Care'];
 
-        foreach ($categories as $category) {
-            DB::table('categories')->insert([
-                'name' => $category,
-                'slug' => Str::slug($category), // Membuat slug dari nama kategori
-                'created_at' => now(),
-                'updated_at' => now(),
+        foreach ($categories as $cat) {
+            Category::create([
+                'name' => $cat,
+                'slug' => Str::slug($cat),
+                'image' => null,
             ]);
         }
     }
