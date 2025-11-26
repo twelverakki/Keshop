@@ -33,12 +33,13 @@ class UserSeeder extends Seeder
                 'password' => 'password',
                 'role' => 'seller',
                 'email_verified_at' => now(), // Status Approved
-            ]
-        );
+                ]
+            );
 
         // b. Seller Menunggu/Ditolak (PENDING/REJECTED) - 4 Akun
         User::factory()->count(4)->create([
             'role' => 'seller',
+            'password' => 'password',
             'email_verified_at' => null, // Status Pending/Rejected
         ]);
 
@@ -47,6 +48,7 @@ class UserSeeder extends Seeder
         // Buyer juga dapat memiliki email_verified_at NULL (tidak diverifikasi)
         User::factory()->count(4)->create([
             'role' => 'buyer',
+            'password' => 'password',
             'email_verified_at' => now(),
         ]);
     }
