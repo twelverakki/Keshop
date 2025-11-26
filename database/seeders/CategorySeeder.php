@@ -10,7 +10,23 @@ class CategorySeeder extends Seeder
 {
     public function run(): void
     {
-        $categories = ['Skin Care', 'Makeup', 'Hair Care', 'Fragrances', 'Body Care'];
+        $categories = [
+            "Fashion Pria",
+            "Fashion Wanita",
+            "Kecantikan & Perawatan Diri",
+            "Elektronik",
+            "Perlengkapan Rumah Tangga",
+            "Hobi & Koleksi",
+            "Makanan & Minuman",
+            "Ibu & Bayi",
+            "Otomotif",
+            "Olahraga & Aktivitas Luar Ruang",
+            "Kesehatan",
+            "Perhiasan & Aksesori",
+            "Mainan Anak & Edukasi",
+            "Perlengkapan Kantor & Alat Tulis",
+            "Perlengkapan Hewan Peliharaan"
+        ];
 
         foreach ($categories as $cat) {
             Category::create([

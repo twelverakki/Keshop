@@ -23,7 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role', 
+        'role',
     ];
 
     /**
@@ -49,10 +49,6 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * DEFINISI RELASI CART
-     * Pastikan kode ini ada di dalam class User, sebelum tanda kurung tutup '}' terakhir.
-     */
     public function carts(): HasMany
     {
         return $this->hasMany(Cart::class);
@@ -62,5 +58,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
-    
+
 }
