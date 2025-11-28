@@ -21,7 +21,7 @@ class HomeController extends Controller
 
             return view('dashboard.user.home');
         } else {
-            return redirect('login');
+            return view('home');
         }
     }
 }
