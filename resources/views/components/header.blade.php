@@ -11,7 +11,7 @@
             {{-- Navigasi Utama --}}
             <nav class="hidden sm:ml-6 sm:flex sm:space-x-8 items-center text-sm font-medium">
                 <x-nav-link :href="route('home')" :active="request()->routeIs('home')">Home</x-nav-link>
-                <x-nav-link :href="route('shop')" :active="request()->routeIs('shop')">Shop</x-nav-link>
+                <x-nav-link :href="route('shop.index')" :active="request()->routeIs('shop')">Shop</x-nav-link>
                 {{-- <a href="{{ route('home') }}" class="border-b-2 border-orange-500 text-orange-600 px-1 pt-1">Home</a>
                 <a href="{{ route('shop') }}" class="border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 px-1 pt-1">Shop</a>
                 <a href="#" class="border-b-2 border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 px-1 pt-1">Blog</a> --}}
