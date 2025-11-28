@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -18,10 +19,10 @@ class HomeController extends Controller
             if ($role == 'seller') {
                 return redirect()->route('seller.home');
             }
-
-            return view('dashboard.user.home');
+            
+            return redirect()->route('shop.index');
         } else {
-            return view('home');
+            return redirect('login');
         }
     }
 }

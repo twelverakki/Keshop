@@ -31,8 +31,13 @@ class ProductsController extends Controller
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'description' => 'required|string',
-            'image_url' => 'required|url',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('products', 'public');
+        }
 
         Product::create([
             'seller_id' => Auth::id(),
@@ -42,7 +47,7 @@ class ProductsController extends Controller
             'description' => $request->description,
             'price' => $request->price,
             'stock' => $request->stock,
-            'image' => $request->image_url,
+            'image' => $imagePath,
             'is_active' => true,
         ]);
 
@@ -51,43 +56,52 @@ class ProductsController extends Controller
 
     public function edit(Product $product)
     {
-        if ($product->seller_id !== Auth::id()) {
-            abort(403);
-        }
+        if ($product->seller_id !== Auth::id()) { abort(403); }
         $categories = Category::all();
         return view('dashboard.seller.products.edit', compact('product', 'categories'));
     }
 
     public function update(Request $request, Product $product)
     {
-        if ($product->seller_id !== Auth::id()) {
-            abort(403);
-        }
+        if ($product->seller_id !== Auth::id()) { abort(403); }
 
         $request->validate([
             'name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
-            'image_url' => 'required|url',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $product->update([
+        $data = [
             'category_id' => $request->category_id,
             'name' => $request->name,
             'price' => $request->price,
             'stock' => $request->stock,
             'description' => $request->description,
-            'image' => $request->image_url,
-        ]);
+        ];
+
+        if ($request->hasFile('image')) {
+
+            if ($product->image && !Str::startsWith($product->getRawOriginal('image'), 'http')) {
+                Storage::disk('public')->delete($product->getRawOriginal('image'));
+            }
+
+            $data['image'] = $request->file('image')->store('products', 'public');
+        }
+
+        $product->update($data);
 
         return redirect()->route('seller.products.index')->with('success', 'Product updated successfully!');
     }
 
+
     public function destroy(Product $product)
     {
-        if ($product->seller_id !== Auth::id()) {
-            abort(403);
+        if ($product->seller_id !== Auth::id()) { abort(403); }
+
+        if ($product->image && !Str::startsWith($product->getRawOriginal('image'), 'http')) {
+            Storage::disk('public')->delete($product->getRawOriginal('image'));
         }
 
         $product->delete();
