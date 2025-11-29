@@ -1,52 +1,242 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register - Hiyoucan</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="font- antialiased text-gray-900 bg-white">
+    <section
+			id="kontak"
+			class="h-[100vh] bg-cover px-20"
+		>
+            <div class="fixed inset-0" style="z-index: 0;">
+                <img src="{{ asset('images/bg-l.jpg') }}" alt="Dark Leaves Background"
+                    class="w-full h-full object-cover">
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+                <div class="absolute inset-0 bg-black/50" style="z-index: 1;"></div>
+            </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+			<div class="grid md:grid-cols-2 h-full place-items-center">
+				<div class="flex flex-col max-md:mt-15 max-md:mb-10 z-10 text-white">
+					<div class="flex-shrink-0 flex items-center mb-4">
+                        <a href="{{ route('home') }}" class="text-2xl font-bold tracking-wider">
+                            K E S H O P
+                        </a>
+                    </div>
+					<h2 class="mt-6 text-7xl font-bold">Create an account</h2>
+                    <p class="mt-2 text-sm">Start your journey with us today.</p>
+				</div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+                <form method="POST" action="{{ route('register') }}" class="flex flex-wrap z-10">
+                    @csrf
 
-            <x-text-input id="password" class="block mt-1 w-full"
+                    <div
+                        class="flex-[0_0_auto] flex flex-col w-full gap-[7px] relative text-white mb-[30px] px-2"
+                    >
+                        <input
+                            type="text"
+                            name="name"
+                            value="{{ old('name') }}"
+                            required
+                            class="peer h-[45px] rounded-md border-none outline-none px-[7px] text-white text-[15px] bg-transparent backdrop-blur-sm shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4)] focus:shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4),inset_3px_3px_10px_rgba(0,0,0,1),inset_-1px_-1px_6px_rgba(255,255,255,0.4)]"
+                            placeholder=" " {{-- Perlu placeholder non-empty untuk validasi peer-valid: --}}
+                        />
+                        <label
+                            class="absolute left-[18px] top-[13px] text-[15px] transition-all peer-focus:-translate-y-[35px] peer-focus:pl-[2px] peer-valid:-translate-y-[35px] peer-valid:pl-[2px]"
+                        >
+                            Nama Lengkap
+                        </label>
+                        <x-input-error :messages="$errors->get('name')" class="mt-1" />
+                    </div>
+
+                    <div
+                        class="flex-[0_0_auto] flex flex-col w-full gap-[7px] relative text-white mb-[30px] px-2"
+                    >
+                        <input
+                            type="email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            required
+                            class="peer h-[45px] rounded-md border-none outline-none px-[7px] text-white text-[15px] bg-transparent backdrop-blur-sm shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4)] focus:shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4),inset_3px_3px_10px_rgba(0,0,0,1),inset_-1px_-1px_6px_rgba(255,255,255,0.4)]"
+                            placeholder=" "
+                        />
+                        <label
+                            class="absolute left-[18px] top-[13px] text-[15px] transition-all peer-focus:-translate-y-[35px] peer-focus:pl-[2px] peer-valid:-translate-y-[35px] peer-valid:pl-[2px]"
+                        >
+                            Email
+                        </label>
+                        <x-input-error :messages="$errors->get('email')" class="mt-1" />
+                    </div>
+
+                    <div
+                        class="flex-[0_0_auto] w-full flex flex-col gap-[7px] relative text-white mb-[30px] px-2"
+                    >
+                        <input
                             type="password"
                             name="password"
-                            required autocomplete="new-password" />
+                            required
+                            class="peer h-[45px] rounded-md border-none outline-none px-[7px] text-white text-[15px] bg-transparent backdrop-blur-sm shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4)] focus:shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4),inset_3px_3px_10px_rgba(0,0,0,1),inset_-1px_-1px_6px_rgba(255,255,255,0.4)]"
+                            placeholder=" "
+                        />
+                        <label
+                            class="absolute left-[18px] top-[13px] text-[15px] transition-all peer-focus:-translate-y-[35px] peer-focus:pl-[2px] peer-valid:-translate-y-[35px] peer-valid:pl-[2px]"
+                        >
+                            Password
+                        </label>
+                        <x-input-error :messages="$errors->get('password')" class="mt-1" />
+                    </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
+                    <div
+                        class="flex-[0_0_auto] w-full flex flex-col gap-[7px] relative text-white mb-[30px] px-2"
+                    >
+                        <input
                             type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                            name="password_confirmation"
+                            required
+                            class="peer h-[45px] rounded-md border-none outline-none px-[7px] text-white text-[15px] bg-transparent backdrop-blur-sm shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4)] focus:shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4),inset_3px_3px_10px_rgba(0,0,0,1),inset_-1px_-1px_6px_rgba(255,255,255,0.4)]"
+                            placeholder=" "
+                        />
+                        <label
+                            class="absolute left-[18px] top-[13px] text-[15px] transition-all peer-focus:-translate-y-[35px] peer-focus:pl-[2px] peer-valid:-translate-y-[35px] peer-valid:pl-[2px]"
+                        >
+                            Konfirmasi Password
+                        </label>
+                    </div>
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                    <div class="flex-[0_0_auto] w-full flex flex-col gap-[7px] relative text-white mb-[30px] px-2">
+                        <label class="block text-sm font-medium mb-2">Saya ingin bergabung sebagai:</label>
+                        <div class="grid grid-cols-2 gap-3">
+
+                            {{-- Pilihan Buyer --}}
+                            <label class="border rounded-lg p-3 cursor-pointer hover:bg-white/10 flex items-center justify-center gap-2 has-[:checked]:border-white has-[:checked]:bg-white/20 transition backdrop-blur-sm shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4)]">
+                                <input type="radio" name="role" value="buyer" class="text-white focus:ring-white bg-transparent" {{ old('role') == 'buyer' ? 'checked' : '' }} >
+                                <span class="text-sm font-medium">Pembeli</span>
+                            </label>
+
+                            {{-- Pilihan Seller --}}
+                            <label class="border rounded-lg p-3 cursor-pointer hover:bg-white/10 flex items-center justify-center gap-2 has-[:checked]:border-white has-[:checked]:bg-white/20 transition backdrop-blur-sm shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4)]">
+                                <input type="radio" name="role" value="seller" class="text-white focus:ring-white bg-transparent" {{ old('role') == 'seller' ? 'checked' : '' }}>
+                                <span class="text-sm font-medium">Penjual</span>
+                            </label>
+
+                        </div>
+                        <x-input-error :messages="$errors->get('role')" class="mt-1" />
+                    </div>
+
+                    <div
+                        class="flex-[0_0_auto] w-full flex flex-col gap-[7px] relative text-white px-2"
+                    >
+                        <button
+                            type="submit"
+                            class="h-[45px] rounded-md border-none outline-none px-[7px] text-white text-[15px] backdrop-blur-sm focus:shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4)] shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4),inset_3px_3px_10px_rgba(0,0,0,1),inset_-1px_-1px_6px_rgba(255,255,255,0.4)] font-bold transition hover:opacity-90"
+                        >
+                            Buat Akun
+                        </button>
+                    </div>
+
+                    <div class="mt-8 text-center w-full">
+                        <p class="text-md text-white">
+                            Already have an account?
+                            <a href="{{ route('login') }}" class="font-bold text-hiyoucan-700 hover:text-hiyoucan-600 transition">Log in</a>
+                        </p>
+                    </div>
+                </form>
+
+
+			</div>
+		</section>
+
+    {{-- <div class="min-h-screen flex relative">
+
+        <div class="fixed inset-0" style="z-index: 0;">
+            <img src="{{ asset('images/bg-l.jpg') }}" alt="Dark Leaves Background"
+                class="w-full h-full object-cover">
+
+            <div class="absolute inset-0 bg-black/50" style="z-index: 1;"></div>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
+        <div class="hidden lg:block w-1/2 relative z-10">
         </div>
-    </form>
-</x-guest-layout>
+
+        <div class="w-full lg:w-1/2 min-h-screen flex flex-col justify-center relative z-20
+                    backdrop-blur-xl shadow-2xl overflow-y-auto">
+
+            <div class="mx-auto w-full max-w-sm lg:w-96 py-12 px-6 sm:px-8">
+                <div>
+                    <a href="/" class="text-4xl font-extrabold text-gray-900 tracking-widest uppercase">Hiyoucan<span class="text-hiyoucan-600">.</span></a>
+                    <h2 class="mt-8 text-3xl font-bold text-gray-900">Create an account</h2>
+                    <p class="mt-2 text-md text-gray-700">Start your journey with us today and explore thousands of products.</p>
+                </div>
+
+                <div class="mt-10">
+                    <form method="POST" action="{{ route('register') }}" class="space-y-6">
+                        @csrf
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Full Name</label>
+                            <input type="text" name="name" value="{{ old('name') }}" required
+                                class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-xl shadow-inner-sm
+                                        focus:ring-2 focus:ring-hiyoucan-500 focus:border-hiyoucan-500 sm:text-base transition duration-150">
+                            <x-input-error :messages="$errors->get('name')" class="mt-1" />
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Email address</label>
+                            <input type="email" name="email" value="{{ old('email') }}" required
+                                class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-xl shadow-inner-sm
+                                        focus:ring-2 focus:ring-hiyoucan-500 focus:border-hiyoucan-500 sm:text-base transition duration-150">
+                            <x-input-error :messages="$errors->get('email')" class="mt-1" />
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Password</label>
+                            <input type="password" name="password" required
+                                class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-xl shadow-inner-sm
+                                        focus:ring-2 focus:ring-hiyoucan-500 focus:border-hiyoucan-500 sm:text-base transition duration-150">
+                            <x-input-error :messages="$errors->get('password')" class="mt-1" />
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                            <input type="password" name="password_confirmation" required
+                                class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-xl shadow-inner-sm
+                                        focus:ring-2 focus:ring-hiyoucan-500 focus:border-hiyoucan-500 sm:text-base transition duration-150">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">I want to join as:</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <label class="border-2 rounded-xl p-4 cursor-pointer hover:shadow-lg flex items-center justify-center gap-2
+                                            has-[:checked]:border-hiyoucan-600 has-[:checked]:bg-hiyoucan-50 transition duration-200 ease-in-out">
+                                    <input type="radio" name="role" value="buyer" class="text-hiyoucan-600 focus:ring-hiyoucan-500 w-4 h-4" checked>
+                                    <span class="text-base font-semibold text-gray-700">🛒 Buyer</span>
+                                </label>
+                                <label class="border-2 rounded-xl p-4 cursor-pointer hover:shadow-lg flex items-center justify-center gap-2
+                                            has-[:checked]:border-hiyoucan-600 has-[:checked]:bg-hiyoucan-50 transition duration-200 ease-in-out">
+                                    <input type="radio" name="role" value="seller" class="text-hiyoucan-600 focus:ring-hiyoucan-500 w-4 h-4">
+                                    <span class="text-base font-semibold text-gray-700">📦 Seller</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-xl shadow-lg
+                                                    text-lg font-extrabold text-white bg-hiyoucan-700 hover:bg-hiyoucan-800
+                                                    focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-hiyoucan-500 transition duration-200">
+                            Create Account
+                        </button>
+                    </form>
+
+                    <div class="mt-8 text-center">
+                        <p class="text-md text-gray-600">
+                            Already have an account?
+                            <a href="{{ route('login') }}" class="font-bold text-hiyoucan-700 hover:text-hiyoucan-600 transition">Log in</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+</body>
+</html>

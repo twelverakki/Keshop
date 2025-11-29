@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -43,16 +44,11 @@ class Product extends Model
         return round($this->reviews()->avg('rating'), 1) ?? 0;
     }
 
-    public function getImageAttribute($value)
+    protected function shortName(): Attribute
     {
-        if (!$value) {
-            return 'https://via.placeholder.com/400x400.png?text=No+Image';
-        }
-
-        if (Str::startsWith($value, ['http://', 'https://'])) {
-            return $value;
-        }
-
-        return asset('storage/' . $value);
+        return Attribute::make(
+            // Gunakan $attributes['name'] untuk mendapatkan nilai kolom 'name' dari database
+            get: fn ($value, $attributes) => Str::limit($attributes['name'], 40, '...'),
+        );
     }
 }

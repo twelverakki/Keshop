@@ -5,16 +5,19 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                    <a href="{{ route('dashboard') }}" class="text-2xl font-bold text-gray-800 tracking-wider">
+                        K E S H O P
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">{{ __('Dashboard') }}</x-nav-link>
+                    @if (Auth::user()->role == 'admin')
+                        <x-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">{{ __('Manage Users') }}</x-nav-link>
+                        <x-nav-link :href="route('admin.categories')" :active="request()->routeIs('admin.categories')">{{ __('Manage Categories') }}</x-nav-link>
+                        <x-nav-link :href="route('admin.products')" :active="request()->routeIs('admin.products')">{{ __('Manage Products') }}</x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -75,8 +78,8 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                {{-- <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div> --}}
             </div>
 
             <div class="mt-3 space-y-1">

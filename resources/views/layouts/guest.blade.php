@@ -14,16 +14,14 @@
     </head>
     <body class="font-sans antialiased text-gray-900 bg-gray-50">
 
-        {{-- Header Component (Navigasi) --}}
-        <x-header />
+        <x-header/>
 
-        {{-- Konten Utama --}}
         <main>
             {{ $slot }}
         </main>
 
         {{-- Footer (akan dibuat nanti) --}}
-        {{-- <x-footer /> --}}
+        @include('.shop.footer')
 
     </body>
 </html>
