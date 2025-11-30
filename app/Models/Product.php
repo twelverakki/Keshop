@@ -47,7 +47,6 @@ class Product extends Model
     protected function shortName(): Attribute
     {
         return Attribute::make(
-            // Gunakan $attributes['name'] untuk mendapatkan nilai kolom 'name' dari database
             get: fn ($value, $attributes) => Str::limit($attributes['name'], 40, '...'),
         );
     }

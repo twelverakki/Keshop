@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,6 +12,12 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+
+    private const COLORS = [
+        'bg-red-500', 'bg-blue-500', 'bg-green-500',
+        'bg-yellow-500', 'bg-indigo-500', 'bg-purple-500',
+        'bg-pink-500', 'bg-teal-500'
+    ];
 
     protected $fillable = [
         'name',
@@ -43,13 +50,22 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
-    public function store(): HasOne
-    {
-        return $this->hasOne(Store::class);
-    }
-
     public function wishlists(): HasMany
     {
         return $this->hasMany(Wishlist::class);
+    }
+
+    protected function profileColor(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                $id = $this->id;
+                $count = count(self::COLORS);
+
+                $index = $id % $count;
+
+                return self::COLORS[$index];
+            },
+        );
     }
 }

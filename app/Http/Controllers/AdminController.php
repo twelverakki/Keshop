@@ -113,17 +113,30 @@ class AdminController extends Controller
     {
         $user = User::findOrFail($id);
 
+        if ($user->role === 'admin') {
+            return back()->with('error', 'Tidak dapat mengubah role Admin.');
+        }
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,'.$user->id,
             'password' => 'nullable|min:8',
+            'role' => 'required|in:buyer,seller'
         ]);
 
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->role = $request->role;
+
 
         if ($request->filled('password')) {
             $user->password = bcrypt($request->password);
+        }
+
+        if ($request->role === 'seller' && !$user->email_verified_at) {
+            $user->email_verified_at = null;
+        } elseif ($request->role === 'user') {
+            $user->email_verified_at = now();
         }
 
         $user->save();

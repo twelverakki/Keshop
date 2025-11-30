@@ -5,34 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
-use App\Models\Store; // PENTING
+use App\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage; // PENTING UNTUK GAMBAR
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class StoresController extends Controller
 {
-    public function index()
-    {
-        $sellerId = Auth::id();
-        $stats = [
-            'total_products' => Product::where('seller_id', $sellerId)->count(),
-            'items_sold' => OrderItem::whereHas('product', function($q) use ($sellerId) {
-                $q->where('seller_id', $sellerId);
-            })->sum('quantity'),
-            'revenue' => OrderItem::whereHas('product', function($q) use ($sellerId) {
-                $q->where('seller_id', $sellerId);
-            })->sum(DB::raw('price * quantity')),
-        ];
-
-        $recentOrders = OrderItem::whereHas('product', function($q) use ($sellerId) {
-            $q->where('seller_id', $sellerId);
-        })->with(['order.user', 'product'])->latest()->take(5)->get();
-
-        return view('dashboard.seller.home', compact('stats', 'recentOrders'));
-    }
 
     public function edit()
     {
@@ -56,7 +37,6 @@ class StoresController extends Controller
         if ($store->name !== $request->name) {
              $store->slug = Str::slug($request->name) . '-' . Str::random(5);
         }
-
         if (!$store->slug) {
              $store->slug = Str::slug($request->name) . '-' . Str::random(5);
         }
@@ -66,7 +46,6 @@ class StoresController extends Controller
             if ($store->logo) {
                 Storage::disk('public')->delete($store->logo);
             }
-
             $path = $request->file('logo')->store('stores', 'public');
             $store->logo = $path;
         }
@@ -74,6 +53,27 @@ class StoresController extends Controller
         $store->save();
 
         return back()->with('success', 'Informasi toko berhasil diperbarui!');
+    }
+
+
+    public function index()
+    {
+        $sellerId = Auth::id();
+        $stats = [
+            'total_products' => Product::where('seller_id', $sellerId)->count(),
+            'items_sold' => OrderItem::whereHas('product', function($q) use ($sellerId) {
+                $q->where('seller_id', $sellerId);
+            })->sum('quantity'),
+            'revenue' => OrderItem::whereHas('product', function($q) use ($sellerId) {
+                $q->where('seller_id', $sellerId);
+            })->sum(DB::raw('price * quantity')),
+        ];
+
+        $recentOrders = OrderItem::whereHas('product', function($q) use ($sellerId) {
+            $q->where('seller_id', $sellerId);
+        })->with(['order.user', 'product'])->latest()->take(5)->get();
+
+        return view('dashboard.seller.home', compact('stats', 'recentOrders'));
     }
 
     public function orders()

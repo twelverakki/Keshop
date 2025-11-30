@@ -43,8 +43,8 @@
                         @if(Auth::user()->role === 'buyer' || Auth::user()->role === 'user')
 
                             <div class="relative">
-                                <button @click="profileOpen = !profileOpen" @click.outside="profileOpen = false" class="flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-hiyoucan-700 focus:outline-none transition">
-                                    <div class="h-8 w-8 rounded-full bg-hiyoucan-100 flex items-center justify-center text-hiyoucan-700 font-bold border border-hiyoucan-200">
+                                <button @click="profileOpen = !profileOpen" @click.outside="profileOpen = false" class="flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-[#456845] focus:outline-none transition">
+                                    <div class="h-8 w-8 rounded-full bg-hiyoucan-100 flex items-center justify-center text-[#456845] font-bold border border-hiyoucan-200">
                                         {{ substr(Auth::user()->name, 0, 1) }}
                                     </div>
                                     <span class="hidden md:block">{{ Auth::user()->name }}</span>
@@ -66,9 +66,9 @@
                                         <p class="text-sm font-bold text-hiyoucan-900 truncate">{{ Auth::user()->email }}</p>
                                     </div>
 
-                                    <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-hiyoucan-50 hover:text-hiyoucan-700 transition">Edit Profile</a>
-                                    <a href="{{ route('wishlist.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-hiyoucan-50 hover:text-hiyoucan-700 transition">My Wishlist</a>
-                                    <a href="{{ route('orders.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-hiyoucan-50 hover:text-hiyoucan-700 transition">My Orders</a>
+                                    <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-hiyoucan-50 hover:text-[#456845] transition">Edit Profile</a>
+                                    <a href="{{ route('wishlist.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-hiyoucan-50 hover:text-[#456845] transition">My Wishlist</a>
+                                    <a href="{{ route('orders.index') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-hiyoucan-50 hover:text-[#456845] transition">My Orders</a>
 
                                     <div class="border-t border-gray-100 my-1"></div>
 
@@ -82,14 +82,14 @@
                             </div>
 
                         @else
-                            <a href="{{ url('/dashboard') }}" class="text-sm font-medium text-white bg-hiyoucan-700 px-4 py-2 rounded hover:bg-hiyoucan-800 transition shadow-sm">Dashboard</a>
+                            <a href="{{ url('/dashboard') }}" class="text-sm font-medium text-white bg-[#456845] px-4 py-2 rounded hover:bg-hiyoucan-800 transition shadow-sm">Dashboard</a>
                         @endif
 
                     @else
                         <div class="flex items-center gap-4">
-                            <a href="{{ route('login') }}" class="text-sm font-medium text-gray-500 hover:text-hiyoucan-700">Log in</a>
+                            <a href="{{ route('login') }}" class="text-sm font-medium text-gray-500 hover:text-[#456845]">Log in</a>
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="text-sm font-medium text-white bg-hiyoucan-700 px-4 py-2 rounded-full hover:bg-hiyoucan-800 transition shadow-sm">Register</a>
+                                <a href="{{ route('register') }}" class="text-sm font-medium text-white bg-[#456845] px-4 py-2 rounded-full hover:bg-hiyoucan-800 transition shadow-sm">Register</a>
                             @endif
                         </div>
                     @endauth

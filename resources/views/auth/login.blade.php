@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login - Hiyoucan</title>
+    <title>Login - Keshop</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         .wrapper {
@@ -146,7 +146,7 @@
                     <div class="mt-8 text-center w-full">
                         <p class="text-md text-white">
                             Don't have an account?
-                            <a href="{{ route('register') }}" class="font-bold text-hiyoucan-700 hover:text-hiyoucan-600 transition">Create an account</a>
+                            <a href="{{ route('register') }}" class="font-bold text-[#456845] hover:text-[#456845] transition">Create an account</a>
                         </p>
                     </div>
                 </form>

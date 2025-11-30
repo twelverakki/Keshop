@@ -139,7 +139,7 @@
                     <div class="mt-8 text-center w-full">
                         <p class="text-md text-white">
                             Already have an account?
-                            <a href="{{ route('login') }}" class="font-bold text-hiyoucan-700 hover:text-hiyoucan-600 transition">Log in</a>
+                            <a href="{{ route('login') }}" class="font-bold text-[#456845] hover:text-hiyoucan-600 transition">Log in</a>
                         </p>
                     </div>
                 </form>
@@ -147,96 +147,5 @@
 
 			</div>
 		</section>
-
-    {{-- <div class="min-h-screen flex relative">
-
-        <div class="fixed inset-0" style="z-index: 0;">
-            <img src="{{ asset('images/bg-l.jpg') }}" alt="Dark Leaves Background"
-                class="w-full h-full object-cover">
-
-            <div class="absolute inset-0 bg-black/50" style="z-index: 1;"></div>
-        </div>
-
-        <div class="hidden lg:block w-1/2 relative z-10">
-        </div>
-
-        <div class="w-full lg:w-1/2 min-h-screen flex flex-col justify-center relative z-20
-                    backdrop-blur-xl shadow-2xl overflow-y-auto">
-
-            <div class="mx-auto w-full max-w-sm lg:w-96 py-12 px-6 sm:px-8">
-                <div>
-                    <a href="/" class="text-4xl font-extrabold text-gray-900 tracking-widest uppercase">Hiyoucan<span class="text-hiyoucan-600">.</span></a>
-                    <h2 class="mt-8 text-3xl font-bold text-gray-900">Create an account</h2>
-                    <p class="mt-2 text-md text-gray-700">Start your journey with us today and explore thousands of products.</p>
-                </div>
-
-                <div class="mt-10">
-                    <form method="POST" action="{{ route('register') }}" class="space-y-6">
-                        @csrf
-
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Full Name</label>
-                            <input type="text" name="name" value="{{ old('name') }}" required
-                                class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-xl shadow-inner-sm
-                                        focus:ring-2 focus:ring-hiyoucan-500 focus:border-hiyoucan-500 sm:text-base transition duration-150">
-                            <x-input-error :messages="$errors->get('name')" class="mt-1" />
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Email address</label>
-                            <input type="email" name="email" value="{{ old('email') }}" required
-                                class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-xl shadow-inner-sm
-                                        focus:ring-2 focus:ring-hiyoucan-500 focus:border-hiyoucan-500 sm:text-base transition duration-150">
-                            <x-input-error :messages="$errors->get('email')" class="mt-1" />
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Password</label>
-                            <input type="password" name="password" required
-                                class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-xl shadow-inner-sm
-                                        focus:ring-2 focus:ring-hiyoucan-500 focus:border-hiyoucan-500 sm:text-base transition duration-150">
-                            <x-input-error :messages="$errors->get('password')" class="mt-1" />
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Confirm Password</label>
-                            <input type="password" name="password_confirmation" required
-                                class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-xl shadow-inner-sm
-                                        focus:ring-2 focus:ring-hiyoucan-500 focus:border-hiyoucan-500 sm:text-base transition duration-150">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-bold text-gray-700 mb-2">I want to join as:</label>
-                            <div class="grid grid-cols-2 gap-4">
-                                <label class="border-2 rounded-xl p-4 cursor-pointer hover:shadow-lg flex items-center justify-center gap-2
-                                            has-[:checked]:border-hiyoucan-600 has-[:checked]:bg-hiyoucan-50 transition duration-200 ease-in-out">
-                                    <input type="radio" name="role" value="buyer" class="text-hiyoucan-600 focus:ring-hiyoucan-500 w-4 h-4" checked>
-                                    <span class="text-base font-semibold text-gray-700">🛒 Buyer</span>
-                                </label>
-                                <label class="border-2 rounded-xl p-4 cursor-pointer hover:shadow-lg flex items-center justify-center gap-2
-                                            has-[:checked]:border-hiyoucan-600 has-[:checked]:bg-hiyoucan-50 transition duration-200 ease-in-out">
-                                    <input type="radio" name="role" value="seller" class="text-hiyoucan-600 focus:ring-hiyoucan-500 w-4 h-4">
-                                    <span class="text-base font-semibold text-gray-700">📦 Seller</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-xl shadow-lg
-                                                    text-lg font-extrabold text-white bg-hiyoucan-700 hover:bg-hiyoucan-800
-                                                    focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-hiyoucan-500 transition duration-200">
-                            Create Account
-                        </button>
-                    </form>
-
-                    <div class="mt-8 text-center">
-                        <p class="text-md text-gray-600">
-                            Already have an account?
-                            <a href="{{ route('login') }}" class="font-bold text-hiyoucan-700 hover:text-hiyoucan-600 transition">Log in</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 </body>
 </html>

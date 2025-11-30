@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex gap-8">
-            
+
             <div class="w-1/3">
                 <div class="bg-white p-6 rounded-lg shadow-sm">
                     <h3 class="font-bold text-lg mb-4">Add New Category</h3>
@@ -15,9 +15,9 @@
                         @csrf
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700 mb-1">Category Name</label>
-                            <input type="text" name="name" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-hiyoucan-500 focus:border-hiyoucan-500" required placeholder="e.g. Serums">
+                            <input type="text" name="name" class="w-full border-gray-300 rounded-md shadow-sm focus:ring-[#76a576] focus:border-[#76a576]" required placeholder="e.g. Serums">
                         </div>
-                        <button type="submit" class="w-full bg-hiyoucan-700 text-white py-2 rounded-md hover:bg-hiyoucan-800">Save Category</button>
+                        <button type="submit" class="w-full bg-[#456845] text-white py-2 rounded-md hover:bg-hiyoucan-800">Save Category</button>
                     </form>
                 </div>
             </div>
