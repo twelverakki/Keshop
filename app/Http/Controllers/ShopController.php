@@ -14,20 +14,10 @@ class ShopController extends Controller
 
         $query = Product::where('is_active', true)->with('category');
 
-        $query->when($request->search, function ($q) use ($request) {
-            return $q->where('name', 'like', '%' . $request->search . '%');
-        });
-
-        $query->when($request->categories, function ($q) use ($request) {
-            return $q->whereIn('category_id', $request->categories);
-        });
-
-        $query->when($request->min_price, function ($q) use ($request) {
-            return $q->where('price', '>=', $request->min_price);
-        });
-        $query->when($request->max_price, function ($q) use ($request) {
-            return $q->where('price', '<=', $request->max_price);
-        });
+        $query->when($request->search, function ($q) use ($request) {return $q->where('name', 'like', '%' . $request->search . '%');});
+        $query->when($request->categories, function ($q) use ($request) {return $q->whereIn('category_id', $request->categories);});
+        $query->when($request->min_price, function ($q) use ($request) {return $q->where('price', '>=', $request->min_price);});
+        $query->when($request->max_price, function ($q) use ($request) {return $q->where('price', '<=', $request->max_price);});
 
         switch ($request->sort) {
             case 'price_asc':
@@ -46,7 +36,15 @@ class ShopController extends Controller
 
         $products = $query->paginate(9)->withQueryString();
 
-        return view('shop.index', compact('categories', 'products'));
+        $recommendations = Product::with(['category'])
+            ->withAvg('reviews', 'rating')
+            ->whereHas('reviews')
+            ->withCount('reviews')
+            ->orderByDesc('reviews_avg_rating')
+            ->limit(10)
+            ->get();
+
+            return view('shop.index', compact('categories', 'products', 'recommendations'));
     }
 
    public function show(Product $product)
@@ -56,6 +54,10 @@ class ShopController extends Controller
         $relatedProducts = Product::where('category_id', $product->category_id)
             ->where('id', '!=', $product->id)
             ->where('is_active', true)
+            ->with(['category'])
+            ->withAvg('reviews', 'rating')
+            ->whereHas('reviews')
+            ->withCount('reviews')
             ->take(4)
             ->get();
 

@@ -1,3 +1,5 @@
+@php $isWishlisted = Auth::user() ? Auth::user()->wishlists->contains('product_id', $product->id) : 0; @endphp
+
 <div>
     <a href="{{ route('shop.show', $product->slug) }}" class="block">
         <div class="relative aspect-square bg-gray-50 rounded-lg flex justify-center items-center overflow-hidden">
@@ -41,10 +43,8 @@
             @csrf
             <input type="hidden" name="product_id" value="{{ $product->id }}">
             <button type="submit"
-                {{-- class="w-full py-3 bg-white rounded-full p-2 shadow-md transition duration-200 group/btn border border-gray-100" --}}
                 class="rounded-full p-3 shadow-md hover:scale-110 transition duration-200 group/btn border border-gray-100"
             >
-                @php $isWishlisted = Auth::user()->wishlists->contains('product_id', $product->id); @endphp
                 <svg class="w-5 h-5 inline {{ $isWishlisted ? 'fill-red-500 text-red-500' : 'fill-none text-gray-400 group-hover/btn:text-red-500' }}" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                 </svg>
@@ -57,18 +57,17 @@
             </svg>
         </button> --}}
         @else
-        {{-- <a href="{{ route('register', $product->slug) }}" class="group/btn flex-1 px-4 py-3 text-gray-900 font-semibold border border-gray-300 rounded-full hover:bg-gray-100 transition duration-150">
+        {{-- <a  class="group/btn flex-1 px-4 py-3 text-gray-900 font-semibold border border-gray-300 rounded-full hover:bg-gray-100 transition duration-150">
             Add to
             <svg class="w-5 h-5 inline fill-none text-gray-400 group-hover/btn:text-red-500" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
             </svg>
         </a> --}}
-        <button type="submit" class="bg-white rounded-full p-3 shadow-md hover:scale-110 transition duration-200 group/btn border border-gray-100">
-            @php $isWishlisted = Auth::user()->wishlists->contains('product_id', $product->id); @endphp
+        <a href="{{ route('register', $product->slug) }}" class="bg-white rounded-full p-3 shadow-md hover:scale-110 transition duration-200 group/btn border border-gray-100">
             <svg class="w-5 h-5 {{ $isWishlisted ? 'fill-red-500 text-red-500' : 'fill-none text-gray-400 group-hover/btn:text-red-500' }}" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
             </svg>
-        </button>
+        </a>
         @endauth
 
         <a href="{{ route('shop.show', $product->slug) }}" class="inline w-full text-center px-4 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-700 transition duration-150">

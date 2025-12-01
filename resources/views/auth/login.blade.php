@@ -38,7 +38,7 @@
 
     <section
 			id="kontak"
-			class="h-[100vh] bg-cover px-20"
+			class="md:h-[100vh] bg-cover p-6 py-12 md:px-20 md:py-0"
 		>
             <div class="fixed inset-0" style="z-index: 0;">
                 <img src="{{ asset('images/bg-l.jpg') }}" alt="Dark Leaves Background"

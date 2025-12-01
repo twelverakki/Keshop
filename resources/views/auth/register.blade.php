@@ -9,7 +9,7 @@
 <body class="font- antialiased text-gray-900 bg-white">
     <section
 			id="kontak"
-			class="h-[100vh] bg-cover px-20"
+			class="md:h-[100vh] bg-cover p-6 py-12 md:px-20 md:py-0"
 		>
             <div class="fixed inset-0" style="z-index: 0;">
                 <img src="{{ asset('images/bg-l.jpg') }}" alt="Dark Leaves Background"
@@ -19,7 +19,7 @@
             </div>
 
 			<div class="grid md:grid-cols-2 h-full place-items-center">
-				<div class="flex flex-col pb-16 max-md:mt-15 max-md:mb-10 z-10 text-white">
+				<div class="flex flex-col md:pb-16 max-md:mt-15 max-md:mb-10 z-10 text-white">
 					<div class="flex-shrink-0 flex items-center mb-4">
                         <a href="{{ route('home') }}" class="text-2xl font-bold tracking-wider">
                             K E S H O P

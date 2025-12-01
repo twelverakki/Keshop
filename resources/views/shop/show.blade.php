@@ -132,14 +132,15 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h3 class="text-2xl font-bold text-[#2f442f] mb-8">You May Also Like</h3>
             <div class="grid grid-cols-1 sm:grid-cols-4 gap-6">
-                @foreach($relatedProducts as $related)
-                <a href="{{ route('shop.show', $related->slug) }}" class="group block bg-white rounded-xl p-4 hover:shadow-md transition">
+                @foreach($relatedProducts as $product)
+                @include('components.simple-card-product', $product)
+                {{-- <a href="{{ route('shop.show', $related->slug) }}" class="group block bg-white rounded-xl p-4 hover:shadow-md transition">
                     <div class="aspect-square bg-earth-100 rounded-lg overflow-hidden mb-3">
                         <img src="{{ $related->image }}" class="w-full h-full object-cover group-hover:scale-105 transition">
                     </div>
                     <h4 class="font-bold text-gray-900 truncate">{{ $related->name }}</h4>
                     <p class="text-[#456845] text-sm">Rp {{ number_format($related->price, 0, ',', '.') }}</p>
-                </a>
+                </a> --}}
                 @endforeach
             </div>
         </div>

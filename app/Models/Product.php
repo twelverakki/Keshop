@@ -13,6 +13,12 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $appends = [
+        'average_rating', // Jika sudah ada
+        'image_url',      // <-- Tambahkan ini
+        // 'short_name',
+    ];
+
     protected $fillable = [
         'seller_id',
         'category_id',
@@ -38,6 +44,11 @@ class Product extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
     }
 
     public function getAverageRatingAttribute()
