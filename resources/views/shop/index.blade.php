@@ -38,17 +38,14 @@
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-gray-800">Explore our recommendations</h2>
-            {{-- Tombol panah dipertahankan di sini untuk tujuan styling/placement --}}
             <div class="flex space-x-2 text-gray-400">
                 <button class="hover:text-gray-600 transition" aria-label="Previous"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg></button>
                 <button class="hover:text-gray-600 transition" aria-label="Next"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></button>
             </div>
         </div>
 
-        {{-- KONTEN UTAMA: Horizontal Scroll Container --}}
         <div class="flex space-x-6 overflow-x-scroll pb-4 scrollbar-hide">
             @foreach ($recommendations as $product)
-                {{-- Wrapper untuk setiap kartu produk --}}
                 <div class="flex-shrink-0 w-48 md:w-64">
                     @include('components.simple-card-product', ['product' => $product])
                 </div>
@@ -56,19 +53,4 @@
         </div>
     </section>
 
-    {{-- <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-gray-800">Explore our recommendations</h2>
-            <div class="flex space-x-2 text-gray-400">
-                <button class="hover:text-gray-600 transition"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg></button>
-                <button class="hover:text-gray-600 transition"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></button>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                @foreach ($recommendations as $product)
-                @include('components.simple-card-product', ['product' => $product])
-                @endforeach
-        </div>
-    </section> --}}
 </x-guest-layout>

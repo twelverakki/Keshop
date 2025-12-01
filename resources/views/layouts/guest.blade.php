@@ -20,7 +20,6 @@
             {{ $slot }}
         </main>
 
-        {{-- Footer (akan dibuat nanti) --}}
         @include('.shop.footer')
 
     </body>

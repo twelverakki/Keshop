@@ -12,7 +12,6 @@
         <div class="bg-white shadow-2xl rounded-xl border border-gray-100">
             <div class="p-6">
 
-                {{-- TABLE WRAPPER --}}
                     <table class="w-full text-left text-sm divide-y divide-gray-200">
                         <thead class="bg-gray-50 uppercase text-xs text-gray-600 tracking-wider">
                             <tr>
@@ -30,23 +29,18 @@
                             @foreach($products as $product)
                             <tr class="hover:bg-gray-50 transition duration-100">
 
-                                {{-- Image (Menggunakan image_url accessor) --}}
                                 <td class="p-4">
                                     <img src="{{ $product->image_url }}"
                                          class="w-14 h-14 object-cover rounded-lg border border-gray-200 shadow-sm"
                                          alt="{{ $product->name }}">
                                 </td>
 
-                                {{-- Name --}}
                                 <td class="p-4 font-bold text-gray-800 max-w-xs">{{ $product->short_name }}</td>
 
-                                {{-- Category --}}
                                 <td class="p-4 text-gray-600">{{ $product->category->name }}</td>
 
-                                {{-- Price --}}
                                 <td class="p-4 font-semibold text-gray-900 whitespace-nowrap">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
 
-                                {{-- Stock (Pill Sederhana) --}}
                                 <td class="p-4 text-center">
                                     @php
                                         $stockColor = $product->stock < 10 ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800';
@@ -56,7 +50,6 @@
                                     </span>
                                 </td>
 
-                                {{-- Status Aktif (Pill) --}}
                                 <td class="p-4 text-center">
                                     @php
                                         $isActiveColor = $product->is_active ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-500';
@@ -66,9 +59,7 @@
                                     </span>
                                 </td>
 
-                                {{-- Action (Dropdown Tiga Titik) --}}
                                 <td class="p-4 text-right">
-                                    {{-- Menggunakan logika dropdown Aksi Tiga Titik yang kita buat sebelumnya --}}
                                     <div x-data="{ open: false }" @click.outside="open = false" class="relative inline-block text-left">
 
                                         <button @click="open=!open" type="button" class="text-gray-500 hover:text-gray-700 p-1.5 rounded-full hover:bg-gray-100 transition focus:outline-none">
@@ -108,7 +99,6 @@
                     </table>
 
                 <div class="mt-4 flex justify-between items-center">
-                    {{-- Pagination Laravel --}}
                     {{ $products->links() }}
                 </div>
             </div>
@@ -116,45 +106,4 @@
     </div>
 </div>
 
-    {{-- <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6">
-                    <table class="w-full text-left text-sm">
-                        <thead class="bg-gray-50 border-b">
-                            <tr>
-                                <th class="p-4">Image</th>
-                                <th class="p-4">Name</th>
-                                <th class="p-4">Category</th>
-                                <th class="p-4">Price</th>
-                                <th class="p-4">Stock</th>
-                                <th class="p-4 text-right">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($products as $product)
-                            <tr class="border-b hover:bg-gray-50">
-                                <td class="p-4">
-                                    <img src="{{ Storage::url($product->image) }}" class="w-12 h-12 object-cover rounded">
-                                </td>
-                                <td class="p-4 font-bold">{{ $product->name }}</td>
-                                <td class="p-4">{{ $product->category->name }}</td>
-                                <td class="p-4">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
-                                <td class="p-4">{{ $product->stock }}</td>
-                                <td class="p-4 text-right space-x-2">
-                                    <a href="{{ route('seller.products.edit', $product->id) }}" class="text-blue-600 hover:underline">Edit</a>
-                                    <form action="{{ route('seller.products.destroy', $product->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Delete this product?')">
-                                        @csrf @method('DELETE')
-                                        <button type="submit" class="text-red-600 hover:underline">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <div class="mt-4">{{ $products->links() }}</div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
 </x-app-layout>

@@ -2,7 +2,6 @@
 
     <div class="w-full">
 
-        {{-- Area Pesan Utama --}}
         <div class="mb-6 p-4 rounded-lg bg-white/10 text-white text-sm shadow-inner">
             <p class="font-bold mb-1">
                 {{ __('This is a secure area of the application.') }}
@@ -15,7 +14,6 @@
         <form method="POST" action="{{ route('password.confirm') }}" class="flex flex-col w-full gap-6">
             @csrf
 
-            {{-- Password Input --}}
             <div
                 class="flex-[0_0_auto] flex flex-col w-full gap-[7px] relative text-white px-2"
             >
@@ -33,12 +31,10 @@
                 >
                     Password
                 </label>
-                {{-- Error Message (Jika ada) --}}
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
 
             <div class="flex justify-end mt-4 px-2">
-                {{-- Confirm Button --}}
                 <button
                     type="submit"
                     class="h-[45px] px-8 rounded-lg border-none text-white text-[15px] font-bold transition hover:opacity-90 bg-blue-600 shadow-md"
