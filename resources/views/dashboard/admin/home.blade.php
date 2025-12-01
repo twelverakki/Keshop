@@ -18,28 +18,24 @@
 
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
 
-                {{-- Kartu 1: Total Revenue --}}
                 <div class="bg-white rounded-lg p-6 shadow-md border-b-4 border-green-500 flex items-center justify-between">
                     <div>
                         <p class="text-sm text-gray-500 font-medium">Total Revenue</p>
                         <p class="text-3xl font-extrabold text-[#456845] mt-1">Rp {{ number_format($stats['total_sales'], 0, ',', '.') }}</p>
                     </div>
                     <div class="text-green-500 bg-green-50 p-3 rounded-full">
-                        {{-- <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1L19 10.582V12m-7-8a3 3 0 00-3 3.5v6a3 3 0 003 3.5h6a3 3 0 003-3.5v-6a3 3 0 00-3-3.5H9z"></path></svg> --}}
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8" viewBox="0 0 16 16">
                             <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z"/>
                         </svg>
                     </div>
                 </div>
 
-                {{-- Kartu 2: Total Orders --}}
                 <div class="bg-white rounded-lg p-6 shadow-md border-b-4 border-blue-500 flex items-center justify-between">
                     <div>
                         <p class="text-sm text-gray-500 font-medium">Total Orders</p>
                         <p class="text-3xl font-extrabold text-gray-900 mt-1">{{ $stats['total_orders'] }}</p>
                     </div>
                     <div class="text-blue-500 bg-blue-50 p-3 rounded-full">
-                        {{-- <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M17 12l-5 5-5-5"></path></svg> --}}
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8" viewBox="0 0 16 16">
                             <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0z"/>
                             <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/>
@@ -48,21 +44,18 @@
                     </div>
                 </div>
 
-                {{-- Kartu 3: Registered Buyers --}}
                 <div class="bg-white rounded-lg p-6 shadow-md border-b-4 border-purple-500 flex items-center justify-between">
                     <div>
-                        <p class="text-sm text-gray-500 font-medium">Registered Buyers</p>
+                        <p class="text-sm text-gray-500 font-medium">Registered Users</p>
                         <p class="text-3xl font-extrabold text-gray-900 mt-1">{{ $stats['total_users'] }}</p>
                     </div>
                     <div class="text-purple-500 bg-purple-50 p-3 rounded-full">
-                        {{-- <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H2v-2a3 3 0 015.356-1.857M9 20v-2m3 2v-2m3 2v-2m-9-1h10M4 15h4m-4 6h10m6-6v-1a2 2 0 00-2-2H9.864M12 3a1 1 0 110 2 1 1 0 010-2zM4 4h3a3 3 0 013 3v3a3 3 0 01-3 3H4a2 2 0 01-2-2V6a2 2 0 012-2zm0 14v1a2 2 0 002 2h2.5M18 4v1a2 2 0 002 2h2.5M18 18v1a2 2 0 01-2 2h-2.5"></path></svg> --}}
                         <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="w-8 h-8" viewBox="0 0 16 16">
                             <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"/>
                         </svg>
                     </div>
                 </div>
 
-                {{-- Kartu 4: Pending Sellers (dengan indikator status) --}}
                 <div class="bg-white rounded-lg p-6 shadow-md border-b-4 {{ $stats['pending_sellers'] > 0 ? 'border-red-500' : 'border-green-500' }} flex items-center justify-between">
                     <div>
                         <p class="text-sm text-gray-500 font-medium">Pending Sellers</p>
@@ -78,30 +71,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                    <p class="text-sm text-gray-500">Total Revenue</p>
-                    <p class="text-2xl font-bold text-[#456845]">Rp {{ number_format($stats['total_sales'], 0, ',', '.') }}</p>
-                </div>
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                    <p class="text-sm text-gray-500">Total Orders</p>
-                    <p class="text-2xl font-bold text-gray-900">{{ $stats['total_orders'] }}</p>
-                </div>
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                    <p class="text-sm text-gray-500">Registered Buyers</p>
-                    <p class="text-2xl font-bold text-gray-900">{{ $stats['total_users'] }}</p>
-                </div>
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 border-l-4 {{ $stats['pending_sellers'] > 0 ? 'border-red-500' : 'border-green-500' }}">
-                    <p class="text-sm text-gray-500">Pending Sellers</p>
-                    <p class="text-2xl font-bold text-gray-900">{{ $stats['pending_sellers'] }}</p>
-                    @if($stats['pending_sellers'] > 0)
-                        <a href="{{ route('admin.users') }}" class="text-xs text-red-500 hover:underline">Review Now</a>
-                    @endif
-                </div>
-            </div> --}}
-
-
         </div>
     </div>
 </x-app-layout>

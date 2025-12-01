@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Product extends Model
@@ -48,6 +49,21 @@ class Product extends Model
     {
         return Attribute::make(
             get: fn ($value, $attributes) => Str::limit($attributes['name'], 40, '...'),
+        );
+    }
+
+    protected function imageUrl(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value, $attributes) {
+                $path = $attributes['image'];
+
+                if (Str::startsWith($path, ['http://', 'https://'])) {
+                    return $path;
+                }
+
+                return Storage::url($path);
+            },
         );
     }
 }

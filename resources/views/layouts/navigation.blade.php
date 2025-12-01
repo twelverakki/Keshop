@@ -12,11 +12,17 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">{{ __('Dashboard') }}</x-nav-link>
                     @if (Auth::user()->role == 'admin')
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('admin.home')">{{ __('Dashboard') }}</x-nav-link>
                         <x-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">{{ __('Manage Users') }}</x-nav-link>
                         <x-nav-link :href="route('admin.categories')" :active="request()->routeIs('admin.categories')">{{ __('Manage Categories') }}</x-nav-link>
                         <x-nav-link :href="route('admin.products')" :active="request()->routeIs('admin.products')">{{ __('Manage Products') }}</x-nav-link>
+                    @elseif (Auth::user()->role == 'seller' && Auth::user()->email_verified_at)
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('seller.home')">{{ __('Dashboard') }}</x-nav-link>
+                        <x-nav-link :href="route('seller.store.edit')" :active="request()->routeIs('seller.store.edit')">{{ __('Store Profile') }}</x-nav-link>
+                        <x-nav-link :href="route('seller.products.index')" :active="request()->routeIs('seller.products.index')">{{ __('My Products') }}</x-nav-link>
+                        <x-nav-link :href="route('seller.orders')" :active="request()->routeIs('seller.orders')">{{ __('Incoming Orders') }}</x-nav-link>
+
                     @endif
                 </div>
             </div>

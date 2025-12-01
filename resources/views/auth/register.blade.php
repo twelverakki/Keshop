@@ -19,7 +19,7 @@
             </div>
 
 			<div class="grid md:grid-cols-2 h-full place-items-center">
-				<div class="flex flex-col max-md:mt-15 max-md:mb-10 z-10 text-white">
+				<div class="flex flex-col pb-16 max-md:mt-15 max-md:mb-10 z-10 text-white">
 					<div class="flex-shrink-0 flex items-center mb-4">
                         <a href="{{ route('home') }}" class="text-2xl font-bold tracking-wider">
                             K E S H O P
@@ -41,7 +41,7 @@
                             value="{{ old('name') }}"
                             required
                             class="peer h-[45px] rounded-md border-none outline-none px-[7px] text-white text-[15px] bg-transparent backdrop-blur-sm shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4)] focus:shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4),inset_3px_3px_10px_rgba(0,0,0,1),inset_-1px_-1px_6px_rgba(255,255,255,0.4)]"
-                            placeholder=" " {{-- Perlu placeholder non-empty untuk validasi peer-valid: --}}
+                            placeholder=""
                         />
                         <label
                             class="absolute left-[18px] top-[13px] text-[15px] transition-all peer-focus:-translate-y-[35px] peer-focus:pl-[2px] peer-valid:-translate-y-[35px] peer-valid:pl-[2px]"
@@ -60,7 +60,7 @@
                             value="{{ old('email') }}"
                             required
                             class="peer h-[45px] rounded-md border-none outline-none px-[7px] text-white text-[15px] bg-transparent backdrop-blur-sm shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4)] focus:shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4),inset_3px_3px_10px_rgba(0,0,0,1),inset_-1px_-1px_6px_rgba(255,255,255,0.4)]"
-                            placeholder=" "
+                            placeholder=""
                         />
                         <label
                             class="absolute left-[18px] top-[13px] text-[15px] transition-all peer-focus:-translate-y-[35px] peer-focus:pl-[2px] peer-valid:-translate-y-[35px] peer-valid:pl-[2px]"

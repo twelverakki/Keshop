@@ -17,7 +17,7 @@ class AdminController extends Controller
         $stats = [
             'total_sales' => Order::where('status', 'completed')->sum('total_price'),
             'total_orders' => Order::count(),
-            'total_users' => User::where('role', 'user')->count(),
+            'total_users' => User::whereNot('role', 'admin')->count(),
             'pending_sellers' => User::where('role', 'seller')->whereNull('email_verified_at')->count(),
         ];
 
@@ -170,14 +170,59 @@ class AdminController extends Controller
     public function categories()
     {
         $categories = Category::withCount('products')->get();
+
         return view('dashboard.admin.categories', compact('categories'));
+    }
+
+    public function editCategory(Category $category)
+    {
+        $categories = Category::withCount('products')->get();
+
+        return view('dashboard.admin.categories', compact('categories', 'category'));
     }
 
     public function storeCategory(Request $request)
     {
-        $request->validate(['name' => 'required|string|max:255|unique:categories,name']);
-        Category::create(['name' => $request->name, 'slug' => Str::slug($request->name)]);
+        $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('categories', 'public');
+        }
+
+        Category::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'image' => $imagePath
+        ]);
+
         return back()->with('success', 'Kategori ditambahkan.');
+    }
+
+    public function updateCategory(Request $request, Category $category)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+        ];
+
+        if ($request->hasFile('image')) {
+            if ($category->image) {
+                Storage::disk('public')->delete($category->image);
+            }
+            $data['image'] = $request->file('image')->store('categories', 'public');
+        }
+
+        $category->update($data);
+        return redirect()->route('admin.categories')->with('success', 'Kategori "' . $category->name . '" berhasil diperbarui.');
     }
 
     public function destroyCategory(Category $category)

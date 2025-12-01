@@ -1,5 +1,5 @@
 <section class="py-16 bg-gray-800 text-white">
-    <div class="container mx-auto px-4 md:px-6 lg:px-8">
+    <div class="container relative max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <div class="md:flex md:justify-between md:items-start">
             <div class="md:w-1/2 mb-8 md:mb-0">
                 <h2 class="text-3xl font-bold mb-4">Ready to Get <br> Our New Stuff?</h2>
@@ -22,8 +22,15 @@
 </section>
 
 <footer class="bg-white py-12 border-t border-gray-100">
-    <div class="container mx-auto px-4 md:px-6 lg:px-8">
+    <div class="container relative max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+            <div>
+                <h2 class="text-2xl font-bold tracking-widest uppercase mb-4">Keshop</h2>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Kami berdedikasi untuk menyediakan produk perawatan kulit organik terbaik untuk kecantikan alami
+                    Anda.
+                </p>
+            </div>
 
             <div>
                 <h4 class="text-lg font-semibold mb-4 text-gray-900">About</h4>
@@ -67,7 +74,7 @@
 
         <div class="flex flex-col md:flex-row md:justify-between md:items-center text-sm text-gray-500">
             <p class="order-2 md:order-1 mt-4 md:mt-0">
-                Copyright © 2023 Uungha All Rights Reserved.
+                Copyright © 2023 Chandra All Rights Reserved.
             </p>
             <div class="order-1 md:order-2 space-x-4">
                 <a href="#" class="hover:text-blue-600">Terms of Service</a>

@@ -39,7 +39,7 @@
                                 @forelse($products as $product)
                                 <tr class="border-b hover:bg-gray-50">
                                     <td class="p-4 pl-8">
-                                        <img src="{{ $product->image }}" class="w-12 h-12 object-cover rounded border border-gray-200">
+                                        <img src="{{ $product->image_url }}" class="w-12 h-12 object-cover rounded border border-gray-200">
                                     </td>
                                     <td class="p-4">
                                         <span class="font-bold block text-gray-900">{{ $product->name }}</span>

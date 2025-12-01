@@ -1,43 +1,78 @@
-<div class="relative bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
-
-    @if (isset($product->category->name))
-        <div class="absolute top-4 right-4 z-10">
-            <span class="bg-black text-white text-[10px] font-medium px-2 py-1 rounded-sm uppercase tracking-wider">
-                {{ $product->category->name }}
-            </span>
-        </div>
-    @endif 
-
+<div>
     <a href="{{ route('shop.show', $product->slug) }}" class="block">
+        <div class="relative aspect-square bg-gray-50 rounded-lg flex justify-center items-center overflow-hidden">
 
-        <div class="relative aspect-square bg-gray-50 overflow-hidden">
+            <span class="absolute top-3 right-3 bg-white text-gray-800 text-xs font-medium px-3 py-1 rounded-full shadow-md z-10">
+                {{$product->category->shortName ?? 'N/A'}}
+            </span>
+
             <img
-                src="{{ asset($product->image) }}"
+                src="{{ $product->image_url }}"
                 alt="{{ $product->name }}"
                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
             >
         </div>
-
-        <div class="p-4 pt-3">
-            <h3 class="font-semibold text-gray-900 text-lg mb-1 truncate leading-tight">
-                {{ $product->name }}
-            </h3>
-
-            <div class="flex justify-between items-center mt-2">
-                <span class="text-gray-900 font-bold text-lg">
-                    ${{ number_format($product->price, 2) }}
-                </span>
-
-                </div>
-        </div>
     </a>
 
-    <div class="flex p-4 pt-0 space-x-3">
-        <button type="button" class="flex-1 border border-gray-300 text-gray-700 py-2 text-sm font-semibold rounded-lg hover:bg-gray-100 transition duration-150">
-            Add to Cart
+    <div class="rounded-xl overflow-hidden pt-4 transition duration-300">
+        <h3 class="text-xl font-bold text-gray-900 mb-1">{{$product->shortName}}</h3>
+
+        <div class="flex justify-between mb-2">
+            <div class="flex flex-1 items-center align-middle">
+                <span class="text-yellow-500 mr-2">
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.487 7.247l6.565-.955L10 0l2.948 6.292 6.565.955-4.758 4.638 1.123 6.545z"/>
+                    </svg>
+                </span>
+                <span class="text-sm leading-normal text-gray-500 font-medium">
+                    {{ number_format($product->average_rating ?? 0, 1) }} ({{ $product->reviews_count ?? 0 }})
+                </span>
+            </div>
+
+                <span class="text-end flex-1 text-xl font-bold text-gray-900">
+                Rp {{ number_format($product->price, 0, ',', '.') }}
+                </span>
+        </div>
+    </div>
+    <div class="text-sm text-center flex gap-2">
+
+        @auth
+        <form action="{{ route('wishlist.toggle', $product->id)}}" method="POST" class="">
+            @csrf
+            <input type="hidden" name="product_id" value="{{ $product->id }}">
+            <button type="submit"
+                {{-- class="w-full py-3 bg-white rounded-full p-2 shadow-md transition duration-200 group/btn border border-gray-100" --}}
+                class="rounded-full p-3 shadow-md hover:scale-110 transition duration-200 group/btn border border-gray-100"
+            >
+                @php $isWishlisted = Auth::user()->wishlists->contains('product_id', $product->id); @endphp
+                <svg class="w-5 h-5 inline {{ $isWishlisted ? 'fill-red-500 text-red-500' : 'fill-none text-gray-400 group-hover/btn:text-red-500' }}" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                </svg>
+            </button>
+        </form>
+        {{-- <button type="submit" class="bg-white rounded-full p-3 shadow-md hover:scale-110 transition duration-200 group/btn border border-gray-100">
+            @php $isWishlisted = Auth::user()->wishlists->contains('product_id', $product->id); @endphp
+            <svg class="w-5 h-5 {{ $isWishlisted ? 'fill-red-500 text-red-500' : 'fill-none text-gray-400 group-hover/btn:text-red-500' }}" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+        </button> --}}
+        @else
+        {{-- <a href="{{ route('register', $product->slug) }}" class="group/btn flex-1 px-4 py-3 text-gray-900 font-semibold border border-gray-300 rounded-full hover:bg-gray-100 transition duration-150">
+            Add to
+            <svg class="w-5 h-5 inline fill-none text-gray-400 group-hover/btn:text-red-500" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+        </a> --}}
+        <button type="submit" class="bg-white rounded-full p-3 shadow-md hover:scale-110 transition duration-200 group/btn border border-gray-100">
+            @php $isWishlisted = Auth::user()->wishlists->contains('product_id', $product->id); @endphp
+            <svg class="w-5 h-5 {{ $isWishlisted ? 'fill-red-500 text-red-500' : 'fill-none text-gray-400 group-hover/btn:text-red-500' }}" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
         </button>
-        <button type="button" class="flex-1 bg-black text-white py-2 text-sm font-semibold rounded-lg hover:bg-gray-800 transition duration-150">
+        @endauth
+
+        <a href="{{ route('shop.show', $product->slug) }}" class="inline w-full text-center px-4 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-700 transition duration-150">
             Buy Now
-        </button>
+        </a>
     </div>
 </div>

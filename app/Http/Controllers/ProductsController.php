@@ -34,6 +34,7 @@ class ProductsController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
+        // Proses Upload
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('products', 'public');
@@ -61,6 +62,7 @@ class ProductsController extends Controller
         return view('dashboard.seller.products.edit', compact('product', 'categories'));
     }
 
+    // --- LOGIKA UPDATE DENGAN GANTI GAMBAR ---
     public function update(Request $request, Product $product)
     {
         if ($product->seller_id !== Auth::id()) { abort(403); }
@@ -81,12 +83,14 @@ class ProductsController extends Controller
             'description' => $request->description,
         ];
 
+        // Cek jika ada upload gambar baru
         if ($request->hasFile('image')) {
-
+            // 1. Hapus gambar lama (Hanya jika itu file lokal, bukan URL dummy)
             if ($product->image && !Str::startsWith($product->getRawOriginal('image'), 'http')) {
                 Storage::disk('public')->delete($product->getRawOriginal('image'));
             }
 
+            // 2. Simpan gambar baru
             $data['image'] = $request->file('image')->store('products', 'public');
         }
 
@@ -94,7 +98,6 @@ class ProductsController extends Controller
 
         return redirect()->route('seller.products.index')->with('success', 'Product updated successfully!');
     }
-
 
     public function destroy(Product $product)
     {
