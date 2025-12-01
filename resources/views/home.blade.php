@@ -182,8 +182,6 @@
         </div>
     </section>
 
-
-
     <section
         x-data="{
             activeTab: 'new',

@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login - Keshop</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <style>
+<x-auth-layout>
+<style>
         .wrapper {
             cursor: pointer;
             color: #fff;
@@ -33,19 +27,6 @@
         }
 
     </style>
-</head>
-<body class="font-sans antialiased text-gray-900 bg-white">
-
-    <section
-			id="kontak"
-			class="md:h-[100vh] bg-cover p-6 py-12 md:px-20 md:py-0"
-		>
-            <div class="fixed inset-0" style="z-index: 0;">
-                <img src="{{ asset('images/bg-l.jpg') }}" alt="Dark Leaves Background"
-                    class="w-full h-full object-cover">
-
-                <div class="absolute inset-0 bg-black/50" style="z-index: 1;"></div>
-            </div>
 
 			<div class="grid md:grid-cols-2 h-full place-items-center">
                 <form method="POST" action="{{ route('login') }}" class="flex flex-wrap z-10">
@@ -103,7 +84,7 @@
                         class="flex gap-2 items-center text-white mb-4 mx-2 w-full justify-between"
                     >
                         <div class="flex gap-2 items-center">
-                            <label class="wrapper col-6">
+                            <label class="wrapper cursor-pointer text-white">
                                 <input type="checkbox" name="remember" id="remember" class="hidden" />
                                 <svg
                                     viewBox="0 0 64 64"
@@ -113,7 +94,7 @@
                                     <path
                                         d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16"
                                         pathLength="575.0541381835938"
-                                        class="path"
+                                        class="path fill-none stroke-black stroke-[6] stroke-round stroke-join-round transition-dash duration-500 ease stroke-dasharray-initial stroke-dashoffset-0"
                                     ></path>
                                 </svg>
                             </label>
@@ -151,6 +132,4 @@
                     </div>
                 </form>
 			</div>
-		</section>
-</body>
-</html>
+</x-auth-layout>

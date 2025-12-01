@@ -2,8 +2,8 @@
 
     <div class="max-w-7xl mx-auto px-4 pt-6 pb-12">
         <div class="flex justify-between items-end mb-8">
-            <h1 class="text-3xl font-bold text-hiyoucan-900">My Orders</h1>
-            <a href="{{ route('shop.index') }}" class="text-hiyoucan-700 hover:underline text-sm">Continue Shopping</a>
+            <h1 class="text-3xl font-bold text-[#2f442f]">My Orders</h1>
+            <a href="{{ route('shop.index') }}" class="text-[#456845] hover:underline text-sm">Continue Shopping</a>
         </div>
 
         @if(isset($orders) && $orders->count() > 0)
@@ -25,7 +25,7 @@
                             </div>
                             <div>
                                 <p class="text-xs text-gray-500 uppercase tracking-wide font-bold">Total Amount</p>
-                                <p class="text-hiyoucan-700 font-bold">Rp {{ number_format($order->total_price, 0, ',', '.') }}</p>
+                                <p class="text-[#456845] font-bold">Rp {{ number_format($order->total_price, 0, ',', '.') }}</p>
                             </div>
                             <div>
                                 <span class="px-3 py-1 rounded-full text-xs font-bold
@@ -50,7 +50,7 @@
                 <h3 class="mt-2 text-sm font-medium text-gray-900">No orders</h3>
                 <p class="mt-1 text-sm text-gray-500">You haven't placed any orders yet.</p>
                 <div class="mt-6">
-                    <a href="{{ route('shop.index') }}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-hiyoucan-700 hover:bg-hiyoucan-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hiyoucan-500">
+                    <a href="{{ route('shop.index') }}" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[#456845] hover:bg-[#2f442f] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#578357]">
                         Start Shopping
                     </a>
                 </div>

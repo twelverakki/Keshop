@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="text-2xl font-bold text-gray-800 tracking-wider">
+                    <a href="{{ route('home') }}" class="text-2xl font-bold text-gray-800 tracking-wider">
                         K E S H O P
                     </a>
                 </div>
@@ -22,7 +22,6 @@
                         <x-nav-link :href="route('seller.store.edit')" :active="request()->routeIs('seller.store.edit')">{{ __('Store Profile') }}</x-nav-link>
                         <x-nav-link :href="route('seller.products.index')" :active="request()->routeIs('seller.products.index')">{{ __('My Products') }}</x-nav-link>
                         <x-nav-link :href="route('seller.orders')" :active="request()->routeIs('seller.orders')">{{ __('Incoming Orders') }}</x-nav-link>
-
                     @endif
                 </div>
             </div>

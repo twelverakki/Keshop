@@ -1,7 +1,7 @@
 <x-guest-layout>
 
     <div class="max-w-7xl mx-auto px-4 py-12">
-        <h1 class="text-3xl font-bold text-hiyoucan-900 mb-8">My Orders</h1>
+        <h1 class="text-3xl font-bold text-[#2f442f] mb-8">My Orders</h1>
 
         @if($orders->count() > 0)
             <div class="space-y-6">
@@ -18,7 +18,7 @@
                         </div>
                         <div>
                             <p class="text-xs text-gray-500 uppercase tracking-wide font-bold">Total</p>
-                            <p class="text-hiyoucan-700 font-bold">Rp {{ number_format($order->total_price, 0, ',', '.') }}</p>
+                            <p class="text-[#456845] font-bold">Rp {{ number_format($order->total_price, 0, ',', '.') }}</p>
                         </div>
                         <div>
                             <span class="px-3 py-1 rounded-full text-xs font-bold
@@ -50,7 +50,7 @@
         @else
             <div class="text-center py-20 bg-white rounded-xl shadow-sm">
                 <p class="text-gray-500 mb-4">You haven't placed any orders yet.</p>
-                <a href="{{ route('shop.index') }}" class="inline-block bg-hiyoucan-600 text-white px-6 py-2 rounded-lg hover:bg-hiyoucan-700">Start Shopping</a>
+                <a href="{{ route('shop.index') }}" class="inline-block bg-[#456845] text-white px-6 py-2 rounded-lg hover:bg-[#456845]">Start Shopping</a>
             </div>
         @endif
     </div>

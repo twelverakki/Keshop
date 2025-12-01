@@ -5,48 +5,76 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-10 bg-gray-50">
+    <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+
+        <div class="bg-white overflow-hidden shadow-2xl rounded-xl p-8 border border-gray-100">
+
+            <h3 class="text-2xl font-bold text-gray-900 mb-6 border-b pb-4">
+                Store Settings & Branding
+            </h3>
 
             @if(session('success'))
-                <div class="bg-green-100 text-green-700 p-4 rounded mb-6">{{ session('success') }}</div>
+                <div class="bg-green-100 text-green-700 p-4 rounded-lg mb-6 font-medium border border-green-200 shadow-sm">{{ session('success') }}</div>
             @endif
 
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-8">
-                <form action="{{ route('seller.store.update') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
+            <form action="{{ route('seller.store.update') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
 
                     <div class="space-y-6">
+
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Store Name</label>
-                            <input type="text" name="name" value="{{ old('name', $store->name ?? Auth::user()->name . "'s Store") }}" class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring[#76a576] focus:border[#76a576]" required>
+                            <label for="name" class="block text-sm font-semibold text-gray-700 mb-1">Store Name</label>
+                            <input type="text" id="name" name="name"
+                                value="{{ old('name', $store->name ?? Auth::user()->name . "'s Store") }}"
+                                class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-[#456845] focus:border-[#456845] transition duration-150" required>
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Description</label>
-                            <textarea name="description" rows="4" class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-[#76a576] focus:border[#76a576]">{{ old('description', $store->description ?? '') }}</textarea>
+                            <label for="description" class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
+                            <textarea id="description" name="description" rows="7"
+                                class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-[#456845] focus:border-[#456845] transition duration-150">{{ old('description', $store->description ?? '') }}</textarea>
                             <p class="text-xs text-gray-500 mt-1">Ceritakan sedikit tentang toko Anda.</p>
                         </div>
+                    </div>
+
+                    <div class="space-y-6">
 
                         <div>
-                            <label class="block text-sm font-medium text-gray-700">Store Logo</label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Store Logo (Wajib 1:1)</label>
 
-                            @if(isset($store) && $store->logo)
-                                <div class="mt-2 mb-4">
-                                    <img src="{{ asset('storage/' . $store->logo) }}" alt="Logo" class="w-24 h-24 rounded-full object-cover border border-gray-200">
-                                </div>
-                            @endif
+                            @php
+                                $logoUrl = (isset($store) && $store->logo) ? asset('storage/' . $store->logo) : 'https://via.placeholder.com/100/F3F4F6/9CA3AF?text=No+Logo';
+                            @endphp
 
-                            <input type="file" name="logo" class="mt-1 w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-hiyoucan-50 file:text-[#456845] hover:file:bg-hiyoucan-100">
-                            <p class="text-xs text-gray-500 mt-1">Format: JPG, PNG. Max: 2MB.</p>
+                            <div class="mt-2 mb-4">
+                                <img src="{{ $logoUrl }}" alt="Store Logo Preview"
+                                    class="w-32 h-32 rounded-full object-cover border-4 border-dashed border-gray-200 p-1 shadow-md">
+                                <p class="text-xs text-gray-500 mt-2">Current Logo</p>
+                            </div>
+
+                            <input type="file" name="logo"
+                                class="w-full text-sm text-gray-500
+                                    file:mr-4 file:py-2 file:px-4
+                                    file:rounded-lg file:border-0
+                                    file:text-sm file:font-semibold
+                                    file:bg-gray-100 file:text-[#456845]
+                                    hover:file:bg-gray-200 transition duration-150">
+                            <p class="text-xs text-gray-500 mt-1">Format: JPG, PNG. Max: 2MB. Disarankan rasio 1:1.</p>
                         </div>
-
-                        <button type="submit" class="w-full bg-[#456845] text-white py-3 rounded-md font-bold hover:bg-hiyoucan-800">
-                            Save Changes
-                        </button>
                     </div>
-                </form>
-            </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-gray-100">
+                    <button type="submit" class="w-full bg-[#456845] text-white py-3 rounded-lg font-bold hover:bg-green-700 transition shadow-md text-lg">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+
 </x-app-layout>

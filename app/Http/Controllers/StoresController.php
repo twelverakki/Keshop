@@ -59,16 +59,26 @@ class StoresController extends Controller
     public function index()
     {
         $sellerId = Auth::id();
+
         $stats = [
             'total_products' => Product::where('seller_id', $sellerId)->count(),
+
             'items_sold' => OrderItem::whereHas('product', function($q) use ($sellerId) {
                 $q->where('seller_id', $sellerId);
-            })->sum('quantity'),
+            })
+            ->whereHas('order', function($q) {
+                $q->whereIn('status', ['processing', 'completed']);
+            })
+            ->sum('quantity'),
+
             'revenue' => OrderItem::whereHas('product', function($q) use ($sellerId) {
                 $q->where('seller_id', $sellerId);
-            })->sum(DB::raw('price * quantity')),
+            })
+            ->whereHas('order', function($q) {
+                $q->whereIn('status', ['processing', 'completed']);
+            })
+            ->sum(DB::raw('price * quantity')),
         ];
-
         $recentOrders = OrderItem::whereHas('product', function($q) use ($sellerId) {
             $q->where('seller_id', $sellerId);
         })->with(['order.user', 'product'])->latest()->take(5)->get();

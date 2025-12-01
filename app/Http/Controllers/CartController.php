@@ -44,6 +44,23 @@ class CartController extends Controller
         return redirect()->route('cart.index')->with('success', 'Product added to cart!');
     }
 
+    public function update(Request $request, Cart $cartItem)
+    {
+        // dd($request->quantity);
+        $request->validate([
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        if ($cartItem->user_id !== Auth::id()) {
+            return back()->with('error', 'Unauthorized action.');
+        }
+
+        $cartItem->quantity = $request->quantity;
+        $cartItem->save();
+
+        return back();
+    }
+
     public function destroy(Cart $cart)
     {
         if ($cart->user_id !== Auth::id()) {

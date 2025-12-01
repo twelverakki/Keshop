@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    .hide-spin-buttons {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+    }
+
+    /* Mengatur pseudo-element untuk Webkit */
+    .hide-spin-buttons::-webkit-outer-spin-button,
+    .hide-spin-buttons::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    .star-rating-input {
+        direction: rtl; /* Membalikkan urutan bintang */
+        display: inline-flex;
+        line-height: 1; /* Menghilangkan spasi ekstra */
+    }
+
+    /* Menyembunyikan radio input asli */
+    .star-rating-input > input {
+        display: none;
+    }
+
+    /* Style default bintang (belum dipilih) */
+    .star-rating-input > label {
+        color: #cbd5e1; /* Abu-abu terang */
+        font-size: 2rem; /* Membuat bintang besar dan jelas */
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    /* Logic saat bintang diklik atau di-hover */
+    .star-rating-input > input:checked ~ label,
+    .star-rating-input:not(:checked) > label:hover,
+    .star-rating-input:not(:checked) > label:hover ~ label {
+        color: #fbbf24; /* Kuning (yellow-400) */
+    }
+}

@@ -12,7 +12,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
                 <div class="p-6 text-gray-900">
                     <h3 class="font-bold text-lg mb-4">Welcome, Admin!</h3>
-                    <p>Anda memiliki akses penuh untuk mengelola pengguna, kategori, dan memantau transaksi platform Hiyoucan.</p>
+                    <p>Anda memiliki akses penuh untuk mengelola pengguna, kategori, dan memantau transaksi platform Keshop.</p>
                 </div>
             </div>
 

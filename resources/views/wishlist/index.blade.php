@@ -2,8 +2,8 @@
     <div>
         <div class="max-w-7xl mx-auto px-4 py-6">
             <div class="flex justify-between items-end mb-8">
-                <h1 class="text-3xl font-bold text-hiyoucan-900">My Wishlist</h1>
-                <a href="{{ route('shop.index') }}" class="text-hiyoucan-700 hover:underline text-sm">Browse More</a>
+                <h1 class="text-3xl font-bold text-[#2f442f]">My Wishlist</h1>
+                <a href="{{ route('shop.index') }}" class="text-[#456845] hover:underline text-sm">Browse More</a>
             </div>
 
             @if(session('success'))
@@ -23,12 +23,12 @@
 
                         <a href="{{ route('shop.show', $item->product->slug) }}">
                             <div class="relative aspect-[4/5] bg-earth-100">
-                                <img src="{{ $item->product->image }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                <img src="{{ $item->product->image_url }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             </div>
                             <div class="p-4">
                                 <p class="text-xs text-gray-500 mb-1">{{ $item->product->category->name }}</p>
                                 <h3 class="font-bold text-gray-900 truncate">{{ $item->product->name }}</h3>
-                                <p class="text-hiyoucan-700 font-bold mt-1">Rp {{ number_format($item->product->price, 0, ',', '.') }}</p>
+                                <p class="text-[#456845] font-bold mt-1">Rp {{ number_format($item->product->price, 0, ',', '.') }}</p>
                             </div>
                         </a>
                     </div>
@@ -41,7 +41,7 @@
                 <div class="text-center py-20 bg-white rounded-xl shadow-sm">
                     <div class="text-6xl mb-4">💔</div>
                     <p class="text-gray-500 mb-4">Your wishlist is empty.</p>
-                    <a href="{{ route('shop.index') }}" class="inline-block bg-hiyoucan-600 text-white px-6 py-2 rounded-lg hover:bg-hiyoucan-700">Discover Products</a>
+                    <a href="{{ route('shop.index') }}" class="inline-block bg-[#456845] text-white px-6 py-2 rounded-lg hover:bg-[#456845]">Discover Products</a>
                 </div>
             @endif
         </div>

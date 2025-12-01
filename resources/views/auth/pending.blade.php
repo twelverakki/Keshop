@@ -1,39 +1,44 @@
-<x-guest-layout>
-        <div class="min-h-[calc(100vh-64px)] max-w-7xl mx-auto px-4 py-6">
+<x-auth-layout>
+    <div class="min-h-screen flex items-center justify-center py-12">
 
-        <div class="text-center">
-            <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-yellow-100 mb-6">
-                <svg class="h-8 w-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-            </div>
+        <div
+            class="max-w-md w-full z-10 overflow-hidden shadow-2xl rounded-xl p-8 border-none outline-none px-[7px] text-white text-[15px] bg-transparent backdrop-blur-sm shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4)] focus:shadow-[3px_3px_10px_rgba(0,0,0,1),-1px_-1px_6px_rgba(255,255,255,0.4),inset_3px_3px_10px_rgba(0,0,0,1),inset_-1px_-1px_6px_rgba(255,255,255,0.4)]">
 
-            <h2 class="text-2xl font-bold text-gray-900 mb-2">Account Under Review</h2>
-            <p class="text-gray-600 mb-8">
-                Terima kasih telah mendaftar sebagai Seller di Hiyoucan. <br>
-                Akun Anda sedang ditinjau oleh Admin. Harap tunggu persetujuan sebelum dapat mengelola toko.
-            </p>
+            <div class="text-center text-white">
 
-            <div class="border-t border-gray-200 pt-6">
-                <p class="text-sm text-gray-500 mb-4">Ingin membatalkan pendaftaran?</p>
+                <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-orange-100 mb-6 border-4 border-orange-200">
+                    <svg class="h-10 w-10 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
 
-                <form method="POST" action="{{ route('profile.destroy') }}" class="inline-block w-full">
-                    @csrf
-                    @method('delete')
+                <h2 class="text-3xl text-gray-900 font-extrabold mb-3">Akun Dalam Peninjauan</h2>
+                <p class=" mb-8 leading-relaxed">
+                    Terima kasih telah mendaftar sebagai Seller. Permintaan Anda telah diterima dan **sedang ditinjau oleh tim Admin**. <br>
+                    Kami akan mengirimkan notifikasi persetujuan ke email Anda.
+                </p>
 
-                    <x-danger-button class="w-full justify-center" onclick="return confirm('Are you sure you want to delete your account request?')">
-                        {{ __('Delete Account Request') }}
-                    </x-danger-button>
-                </form>
 
-                <form method="POST" action="{{ route('logout') }}" class="mt-4">
-                    @csrf
-                    <button type="submit" class="text-sm text-gray-600 hover:text-gray-900 underline">
-                        {{ __('Log Out') }}
-                    </button>
-                </form>
+                <div class="border-t border-gray-200 pt-6 space-y-3">
+                    <p class="text-sm font-semibold  mb-4">Ingin membatalkan pendaftaran?</p>
+
+                    <form method="POST" action="{{ route('profile.destroy') }}" class="w-full">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="w-full justify-center bg-red-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-700 transition shadow-md"
+                            onclick="return confirm('Apakah Anda yakin ingin membatalkan dan menghapus permintaan akun Anda secara permanen?')">
+                            Batalkan Pendaftaran & Hapus Akun
+                        </button>
+                    </form>
+
+                    <form method="POST" action="{{ route('logout') }}" class="w-full">
+                        @csrf
+                        <button type="submit" class="text-sm hover:underline mt-4">
+                            Log Out dari Akun
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
-
     </div>
-</x-guest-layout>
+</x-auth-layout>

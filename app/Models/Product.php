@@ -14,9 +14,8 @@ class Product extends Model
     use HasFactory;
 
     protected $appends = [
-        'average_rating', // Jika sudah ada
-        'image_url',      // <-- Tambahkan ini
-        // 'short_name',
+        'average_rating',
+        'image_url',
     ];
 
     protected $fillable = [
