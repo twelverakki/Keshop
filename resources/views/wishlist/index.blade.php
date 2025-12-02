@@ -11,7 +11,7 @@
             @endif
 
             @if($wishlists->count() > 0)
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
                     @foreach($wishlists as $item)
                     <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition group relative overflow-hidden">
                         <form action="{{ route('wishlist.toggle', $item->product->id) }}" method="POST" class="absolute top-3 right-3 z-10">

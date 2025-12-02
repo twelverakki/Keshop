@@ -1,4 +1,4 @@
-<aside>
+<aside class="lg:block hidden">
     <form action="{{ route('shop.index') }}" method="GET" class="sticky top-32 space-y-8 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
 
         <div class="flex items-center justify-between pb-4 border-b border-gray-100">
@@ -49,3 +49,5 @@
         </button>
     </form>
 </aside>
+
+<x-filter-modal :categories="$categories" />

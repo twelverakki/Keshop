@@ -15,4 +15,10 @@ class Wishlist extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public function user()
+{
+    // Asumsi: Model User kamu ada di App\Models\User
+    return $this->belongsTo(User::class);
+}
 }

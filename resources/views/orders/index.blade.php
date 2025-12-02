@@ -9,7 +9,7 @@
         @if(isset($orders) && $orders->count() > 0)
             <div class="space-y-6">
                 @foreach($orders as $order)
-               <div class="bg-gray-50 px-6 py-4 border-b border-gray-100">
+               <div class="bg-gray-50 px-6 py-4 border-b border-gray-900">
                         <div class="flex flex-wrap gap-6 justify-between items-start">
                             <div>
                                 <p class="text-xs text-gray-500 uppercase tracking-wide font-bold">Order ID</p>

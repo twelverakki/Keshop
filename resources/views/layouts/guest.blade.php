@@ -12,7 +12,7 @@
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased text-gray-900 bg-gray-50">
+    <body class="font-sans antialiased text-gray-900 bg-gray-50"  x-data="{ mobileMenuOpen: false, filterModalOpen: false }">
 
         <x-header/>
 

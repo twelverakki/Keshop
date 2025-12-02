@@ -26,7 +26,7 @@
             <h3 class="text-lg font-bold text-gray-900 mb-1 truncate">{{ $product->name }}</h3>
         </a>
 
-        <div class="flex justify-between items-center mb-3">
+        <div class="flex  xl:flex-row items-baseline flex-col xl:justify-between xl:items-center mb-3">
 
             <div class="flex items-center">
 
@@ -73,7 +73,7 @@
         </a>
         @endauth
 
-        <a href="{{ route('shop.show', $product->slug) }}" class="flex-1 text-center px-4 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-700 transition duration-150 shadow-md">
+        <a href="{{ route('shop.show', $product->slug) }}" class="flex-1 sm:text-lg text-sm text-center px-4 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-700 transition duration-150 shadow-md">
             Buy Now
         </a>
     </div>

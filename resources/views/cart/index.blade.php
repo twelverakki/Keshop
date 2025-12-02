@@ -20,13 +20,26 @@
 
                 <div class="flex flex-col sm:flex-row items-start sm:items-center p-6 border-b border-gray-100 last:border-0 hover:bg-gray-50 transition duration-150">
 
-                    <div class="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden border border-gray-200 shadow-sm">
-                        <img src="{{ $item->product->image_url }}" class="w-full h-full object-cover">
+
+                    <div class="flex sm:flex-col flex-row">
+                        <div class="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden border border-gray-200 shadow-sm">
+                            <img src="{{ $item->product->image_url }}" class="w-full h-full object-cover">
+                        </div>
+
+                        <div class="flex-1 pl-6 sm:hidden">
+                            <h3 class="text-lg font-extrabold text-gray-900">{{ $item->product->name }}</h3>
+                            <p class="text-sm text-gray-500">{{ $item->product->category->name }}</p>
+                            <p class="text-xs text-gray-500 mt-1">Seller: {{ $item->product->seller->name }}</p>
+
+                            <p class="text-sm text-gray-600 font-medium mt-2">
+                                Price: Rp {{ number_format($item->product->price, 0, ',', '.') }}
+                            </p>
+                        </div>
                     </div>
 
                     <div class="mt-4 sm:mt-0 ml-0 sm:ml-6 flex-1 flex flex-col sm:flex-row justify-between w-full">
 
-                        <div class="flex-1 pr-6">
+                        <div class="flex-1 pr-6 hidden sm:block">
                             <h3 class="text-lg font-extrabold text-gray-900">{{ $item->product->name }}</h3>
                             <p class="text-sm text-gray-500">{{ $item->product->category->name }}</p>
                             <p class="text-xs text-gray-500 mt-1">Seller: {{ $item->product->seller->name }}</p>
@@ -41,6 +54,7 @@
                             <div x-data="{ quantity: {{ $item->quantity }} }">
                                 <form action="{{ route('cart.update', $item->id) }}" method="POST" x-ref="qtyForm" class="flex items-center border border-gray-300 rounded-lg overflow-hidden shadow-sm">
                                     @csrf
+                                    @method('PATCH')
 
                                     <button
                                         type="button"

@@ -7,7 +7,7 @@
         </div>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 px-4 sm:px-0">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -44,77 +44,127 @@
             </div>
 
             <div class="bg-white overflow-hidden shadow-lg rounded-xl">
-            <div class="p-6">
-                <h3 class="font-bold text-xl text-gray-800 border-b pb-4 mb-4">
-                    <span class="border-b-2 border-blue-500 pb-4">Recent Orders</span>
-                </h3>
+                <div class="p-6">
+                    <h3 class="font-bold text-xl text-gray-800 border-b pb-4 mb-4">
+                        <span class="border-b-2 border-blue-500 pb-4">Recent Orders</span>
+                    </h3>
 
-                @if($recentOrders->count() > 0)
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full text-left text-sm divide-y divide-gray-200">
-                            <thead class="bg-gray-50 uppercase text-xs text-gray-600 tracking-wider">
-                                <tr>
-                                    <th class="p-3 font-semibold">Order ID</th>
-                                    <th class="p-3 font-semibold">Product</th>
-                                    <th class="p-3 font-semibold">Buyer</th>
-                                    <th class="p-3 text-center font-semibold">Qty</th>
-                                    <th class="p-3 text-center font-semibold">Status</th>
-                                    <th class="p-3 text-right font-semibold">Total</th>
-                                    <th class="p-3 font-semibold">Date</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-100">
-                                @foreach($recentOrders as $item)
-                                <tr class="hover:bg-gray-50 transition duration-100">
+                    @if($recentOrders->count() > 0)
 
-                                    <td class="p-3 font-mono text-gray-600">#{{ $item->order->id }}</td>
+                        <div class="hidden sm:block overflow-x-auto">
+                            <table class="text-left text-sm divide-y divide-gray-200 w-full min-w-[900px]">
+                                <thead class="bg-gray-50 uppercase text-xs text-gray-600 tracking-wider">
+                                    <tr>
+                                        <th class="p-3 font-semibold">Order ID</th>
+                                        <th class="p-3 font-semibold">Product</th>
+                                        <th class="p-3 font-semibold">Buyer</th>
+                                        <th class="p-3 text-center font-semibold">Qty</th>
+                                        <th class="p-3 text-center font-semibold">Status</th>
+                                        <th class="p-3 text-right font-semibold">Total</th>
+                                        <th class="p-3 font-semibold">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-100">
+                                    @foreach($recentOrders as $item)
+                                    <tr class="hover:bg-gray-50 transition duration-100">
 
-                                    <td class="p-3 flex items-center gap-3">
-                                        <img
-                                            src="{{ $item->product->image_url ?? 'https://via.placeholder.com/40' }}"
-                                            alt="{{ $item->product->name }}"
-                                            class="w-10 h-10 object-cover rounded-md border border-gray-200"
-                                        >
-                                        <span class="font-medium text-gray-800 truncate max-w-[150px]">{{ $item->product->name }}</span>
-                                    </td>
+                                        <td class="p-3 font-mono text-gray-600">#{{ $item->order->id }}</td>
 
-                                    <td class="p-3 text-gray-700">{{ $item->order->user->name }}</td>
+                                        <td class="p-3 flex items-center gap-3">
+                                            <img
+                                                src="{{ $item->product->image_url ?? 'https://via.placeholder.com/40' }}"
+                                                alt="{{ $item->product->name }}"
+                                                class="w-10 h-10 object-cover rounded-md border border-gray-200"
+                                            >
+                                            <span class="font-medium text-gray-800 truncate max-w-[150px]">{{ $item->product->name }}</span>
+                                        </td>
 
-                                    <td class="p-3 text-center text-gray-600">{{ $item->quantity }}</td>
+                                        <td class="p-3 text-gray-700">{{ $item->order->user->name }}</td>
+                                        <td class="p-3 text-center text-gray-600">{{ $item->quantity }}</td>
 
-                                    <td class="p-3 text-center">
-                                        @php
-                                            $status = strtolower($item->order->status);
-                                            $color = match ($status) {
-                                                'completed' => 'bg-green-100 text-green-800',
-                                                'pending' => 'bg-yellow-100 text-yellow-800',
-                                                'processing' => 'bg-blue-100 text-blue-800',
-                                                'cancelled' => 'bg-red-100 text-red-800',
-                                                default => 'bg-gray-100 text-gray-600',
-                                            };
-                                        @endphp
-                                        <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full {{ $color }}">
-                                            {{ ucfirst($status) }}
-                                        </span>
-                                    </td>
+                                        <td class="p-3 text-center">
+                                            @php
+                                                $status = strtolower($item->order->status);
+                                                $color = match ($status) {
+                                                    'completed' => 'bg-green-100 text-green-800',
+                                                    'pending' => 'bg-yellow-100 text-yellow-800',
+                                                    'processing' => 'bg-blue-100 text-blue-800',
+                                                    'cancelled' => 'bg-red-100 text-red-800',
+                                                    default => 'bg-gray-100 text-gray-600',
+                                                };
+                                            @endphp
+                                            <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full {{ $color }}">
+                                                {{ ucfirst($status) }}
+                                            </span>
+                                        </td>
 
-                                    <td class="p-3 text-right font-bold text-gray-900">
-                                        Rp {{ number_format($item->price * $item->quantity, 0, ',', '.') }}
-                                    </td>
+                                        <td class="p-3 text-right font-bold text-gray-900 whitespace-nowrap">
+                                            Rp {{ number_format($item->price * $item->quantity, 0, ',', '.') }}
+                                        </td>
 
-                                    <td class="p-3 text-gray-500 whitespace-nowrap">{{ $item->created_at->diffForHumans() }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                        <td class="p-3 text-gray-500 whitespace-nowrap">{{ $item->created_at->diffForHumans() }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
 
-                    <div class="mt-6 text-right">
-                        <a href="{{ route('seller.orders') }}" class="text-sm font-medium text-blue-600 hover:text-blue-800 transition">View All Orders &rarr;</a>
-                    </div>
-                @else
-                    <p class="text-gray-500 py-4">No recent orders yet.</p>
-                @endif
+                        <div class="sm:hidden space-y-4 pt-2">
+                            @foreach($recentOrders as $item)
+                            <div class="border border-gray-100 rounded-lg p-3 shadow-sm bg-white text-sm">
+
+                                <div class="flex justify-between items-center mb-2 pb-2 border-b border-gray-100">
+                                    <span class="font-bold text-gray-700">#{{ $item->order->id }}</span>
+                                    <span class="text-xs text-gray-500">{{ $item->created_at->diffForHumans() }}</span>
+                                </div>
+
+                                <div class="flex items-center gap-3 mb-3">
+                                    <img
+                                        src="{{ $item->product->image_url ?? 'https://via.placeholder.com/40' }}"
+                                        alt="{{ $item->product->name }}"
+                                        class="w-10 h-10 object-cover rounded-md border border-gray-200"
+                                    >
+                                    <div>
+                                        <p class="font-medium text-gray-800 truncate">{{ $item->product->name }}</p>
+                                        <p class="text-xs text-gray-500">Buyer: {{ $item->order->user->name }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-between items-center pt-2 border-t border-gray-100">
+                                    @php
+                                        $status = strtolower($item->order->status);
+                                        $color = match ($status) {
+                                            'completed' => 'bg-green-100 text-green-800',
+                                            'pending' => 'bg-yellow-100 text-yellow-800',
+                                            'processing' => 'bg-blue-100 text-blue-800',
+                                            'cancelled' => 'bg-red-100 text-red-800',
+                                            default => 'bg-gray-100 text-gray-600',
+                                        };
+                                    @endphp
+                                    <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full {{ $color }}">
+                                        {{ ucfirst($status) }}
+                                    </span>
+
+                                    <div class="text-right">
+                                        <p class="text-xs text-gray-500">Qty: {{ $item->quantity }}</p>
+                                        <p class="font-bold text-gray-900">Rp {{ number_format($item->price * $item->quantity, 0, ',', '.') }}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            @endforeach
+                        </div>
+
+                        <div class="mt-6 text-right">
+                            <a href="{{ route('seller.orders') }}" class="text-sm font-medium text-blue-600 hover:text-blue-800 transition">View All Orders &rarr;</a>
+                        </div>
+
+                    @else
+                        <p class="text-gray-500 py-4">No recent orders yet.</p>
+                    @endif
+                </div>
             </div>
+
         </div>
+    </div>
 </x-app-layout>

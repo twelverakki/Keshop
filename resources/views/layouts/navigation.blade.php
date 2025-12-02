@@ -68,9 +68,17 @@
 
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+            @if (Auth::user()->role == 'admin')
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('admin.home')">{{ __('Dashboard') }}</x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">{{ __('Manage Users') }}</x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.categories')" :active="request()->routeIs('admin.categories')">{{ __('Manage Categories') }}</x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('admin.products')" :active="request()->routeIs('admin.products')">{{ __('Manage Products') }}</x-responsive-nav-link>
+            @elseif (Auth::user()->role == 'seller' && Auth::user()->email_verified_at)
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('seller.home')">{{ __('Dashboard') }}</x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('seller.store.edit')" :active="request()->routeIs('seller.store.edit')">{{ __('Store Profile') }}</x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('seller.products.index')" :active="request()->routeIs('seller.products.index')">{{ __('My Products') }}</x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('seller.orders')" :active="request()->routeIs('seller.orders')">{{ __('Incoming Orders') }}</x-responsive-nav-link>
+            @endif
         </div>
 
         <div class="pt-4 pb-1 border-t border-gray-200">
